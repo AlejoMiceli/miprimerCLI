@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.nav_container {
+  background-color: black;
+}
+
+.menu ul li {
+  color: white;
+  list-style: none;
+  display: inline-block;
+  margin: 20px;
+}
+
+
