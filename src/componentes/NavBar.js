@@ -1,4 +1,5 @@
 import react from "react"
+import CardWidget from "./pages/CardWidget"
 
 export default function NavBar(){
     return(
@@ -15,8 +16,13 @@ export default function NavBar(){
                         <li>
                             Nosotros
                         </li>
+                        <li className="nav_item"> 
+                            <CardWidget/>
+                        </li> 
                     </ul>
-                </div>    
+
+                </div>  
+
         </div>
     </header> 
     )

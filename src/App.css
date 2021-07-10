@@ -39,13 +39,19 @@
 
 .nav_container {
   background-color: black;
+ 
 }
 
 .menu ul li {
+  display: flex;
   color: white;
   list-style: none;
   display: inline-block;
-  margin: 20px;
+  margin: 30px;
 }
 
-
+.nav_item {
+  float: right;
+  padding-right: 70px;
+  font-size: 20px;
+}
