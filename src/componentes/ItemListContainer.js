@@ -1,6 +1,9 @@
 function ItemListContainer(props) {
     return(
-        <h1>{ props.greeting }</h1>
+        <div>
+            <h1>{ props.producto }</h1>
+            <h2>$ { props.precio }</h2>
+        </div>
     )
 }
 
