@@ -4,16 +4,30 @@ import ItemListContainer from "./ItemListContainer";
 var data = [
     {
       producto: "Coca-Cola",
-      precio: 100,
-      
+      precio: 100,    
     }
   ]
 
-export default function Contador () {
+export default function Contador (props) {
     const [contador, setContador] = React.useState(0);
+    console.log(props)
+    function aumentar() {
+        if (contador < props.stock) {
+        setContador(contador + 1)
+    }else{
+        alert("No hay stock")
+    }}     
+    
+    function disminuir() {
+        if (contador > 0) {
+            setContador(contador - 1)
+        } 
+    }
+    
+    function agregar(){
+        props.onAdd(contador)
+    }
 
-    const aumentar = () => setContador(contador + 1)
-    const disminuir = () => setContador(contador - 1)
     return (
 
         <div className="card"> 
@@ -30,12 +44,15 @@ export default function Contador () {
             </div>
 
             <div className="contador">   
+
                 <button onClick={disminuir}>-</button>     
                 <h1>Cantidad: {contador}</h1>
                 <button onClick={aumentar}>+</button>
-                
-            </div>  
 
+            </div>  
+            <div>
+                <button onClick={agregar}>Agregar</button>
+            </div>
         </div>
     )
 }
