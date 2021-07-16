@@ -1,12 +1,7 @@
 import React from "react";
 import ItemListContainer from "./ItemListContainer";
+import Item from "./Item"
 
-var data = [
-    {
-      producto: "Coca-Cola",
-      precio: 100,    
-    }
-  ]
 
 export default function Contador (props) {
     const [contador, setContador] = React.useState(0);
@@ -29,19 +24,7 @@ export default function Contador (props) {
     }
 
     return (
-
-        <div className="card"> 
-
-            <div className="productos">
-                {data.map(bienvenida => {
-                    return(
-                    <ItemListContainer
-                        producto = { bienvenida.producto }
-                        precio = { bienvenida.precio }
-                    />
-                    )
-                })}
-            </div>
+        <div>
 
             <div className="contador">   
 
