@@ -1,16 +1,45 @@
-/*pasar los datos de los productos como props de item list 
-dentro de itemList pasar los props a item
-itemlistcontainer - itemlist - item */
 
+import { useEffect, useState } from "react"
+import Item from "./Item"
 
-function ItemListContainer(props) {
-    return(
-        /*<ItemList/> -- Item*/
-        <div>
-            <h1>{ props.producto }</h1>
-            <h2>$ { props.precio }</h2>
-        </div>
-    )
+export default function Contenedor (){
+    
+    const [productos, setProductos] = useState ([])
+
+    const config = {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow'
+
+    }
+        const fetchData = async () => {
+            let call = fetch('http://localhost:4000/Products', config)
+                .then(res => res.json())
+                .then(resp => setTimeout(() => {
+                    setProductos(resp)
+                }, 2000))
 }
 
-export default ItemListContainer
+useEffect ( ()=> {
+    fetchData()
+},[])
+
+return (
+    <>
+    {productos.map((item) => 
+        <Item 
+          nombre={item.title}
+          precio={item.price}
+        />
+       )  }
+     </>
+       
+)
+}
+
+

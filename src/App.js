@@ -3,13 +3,11 @@ import NavBar from './componentes/NavBar';
 import "./Styles/styles.css"
 import Contador from './componentes/Contador';
 import Item from "./componentes/Item"
-import ContenedorItem from "./componentes/ContenedorItem"
+import Contenedor from "./componentes/ItemListContainer"
+import ItemDeatilContainer from './componentes/ItemDetailConteiner';
 
 
 function App() {
-  function agregarProducto(cantidadSeleccionada) {
-    alert("Agregaste " + cantidadSeleccionada + " productos al carrito")
-  }
   
   return (
     <div>
@@ -17,7 +15,8 @@ function App() {
             <NavBar/>
         </div>
       <h1 className="titulo">Productos</h1>
-        <ContenedorItem/>
+        <Contenedor/>
+        <ItemDeatilContainer/>
     </div>
   );
 }
