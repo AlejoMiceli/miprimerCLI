@@ -1,10 +1,11 @@
-
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import Item from "./Item"
 
 export default function Contenedor (){
     
-    const [productos, setProductos] = useState ([])
+    const [categorias, setCategorias] = useState ([])
+    const { categoryId } = useParams ();
 
     const config = {
         method: 'GET',
@@ -21,7 +22,13 @@ export default function Contenedor (){
             let call = fetch('http://localhost:4000/Products', config)
                 .then(res => res.json())
                 .then(resp => setTimeout(() => {
-                    setProductos(resp)
+                    console.log(resp)
+                    let categoriaFiltrada = resp.flat().filter (e =>
+                        e.categoria == categoryId
+                        )
+                       
+                    setCategorias(categoriaFiltrada)
+                    
                 }, 2000))
 }
 
@@ -31,12 +38,19 @@ useEffect ( ()=> {
 
 return (
     <>
-    {productos.map((item) => 
+    <h1 className="titulo">Productos</h1>
+    
+    {categorias.map((item) =>
+        
+    <div>
+       
         <Item 
           nombre={item.title}
           precio={item.price}
         />
-       )  }
+     
+    </div>
+    )}
      </>
        
 )

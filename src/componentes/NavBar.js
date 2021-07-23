@@ -1,5 +1,6 @@
 import react from "react"
 import CardWidget from "./pages/CardWidget"
+import { Link, NavLink } from "react-router-dom"
 
 export default function NavBar(){
     return(
@@ -8,13 +9,22 @@ export default function NavBar(){
                 <div className="menu">
                     <ul>
                         <li>
-                            Home
+                            <Link to='/Home'>Home</Link>
                         </li>
                         <li>
-                            Productos
+                            <Link to='/'>Productos</Link>
                         </li>
                         <li>
-                            Nosotros
+                            <Link to='/item/:id'>Item Detail</Link>
+                        </li>
+                        <li>
+                            <Link to='/category/Procesadores'>Procesadores</Link>
+                        </li>
+                        <li>
+                            <Link to='/category/Placas-de-video'>Placas de video</Link>
+                        </li>
+                        <li>
+                            <Link to='/category/perifericos'>Perifericos</Link>
                         </li>
                         <li className="nav_item"> 
                             <CardWidget/>
