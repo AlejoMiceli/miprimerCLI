@@ -1,5 +1,5 @@
 [
-    [
+    
          {
         "id":1,
         "image":"https://images-na.ssl-images-amazon.com/images/I/616VM20%2BAzL.__AC_SY300_SX300_QL70_ML2_.jpg",
@@ -24,8 +24,8 @@
         "categoria":"Procesadores",
         "price": "22000"
     }
-    ],
-    [
+    ,
+    
         {
         "id":4,
         "image":"https://app.contabilium.com/files/explorer/20302/Productos-Servicios/concepto-4886285.jpg",
@@ -58,8 +58,8 @@
         "categoria":"Placas-de-video",
         "price": "200000"
     }
-    ],
-    [
+    ,
+    
         {
         "id":8,
         "image":"https://s3-sa-east-1.amazonaws.com/peluffo/39b42091-a487-4a90-9628-15868cb7a18d.jpg",
@@ -85,6 +85,6 @@
         "price": "3800"
 
     }
-    ]
+    
 ]
 

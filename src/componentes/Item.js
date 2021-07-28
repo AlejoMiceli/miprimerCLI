@@ -15,7 +15,7 @@ export default function Item (data){
             <img className="imagenes" src={data.image}></img>      
             <h2>$ {data.precio}</h2>
             </div></Link>
-            <Contador stock={5} initial={1} y onAdd={agregarProducto} />
+            
         </div>
         </>
 

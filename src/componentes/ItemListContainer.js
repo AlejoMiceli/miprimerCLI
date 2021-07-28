@@ -22,10 +22,11 @@ export default function Contenedor (){
             let call = fetch(`http://localhost:4000/Products`, config)
                 .then(res => res.json())
                 .then(resp => setTimeout(() => {
+                    console.log(resp)
                     if (categoryId == undefined){
                         setCategorias(resp)
                     }else{
-                    let categoriaFiltrada = resp.flat().filter (e =>
+                    let categoriaFiltrada = resp.filter (e =>
                         e.categoria == categoryId
                         )
                        
@@ -36,25 +37,26 @@ export default function Contenedor (){
 
 useEffect ( ()=> {
     fetchData()
-},[])
+},[categoryId])
 
 return (
     <>
     <h1 className="titulo">Productos</h1>
-    
-    {categorias.map((item) =>
-     
-    <div>
-       
-        <Item 
-          id={item.id}
-          nombre={item.title}
-          image={item.image}
-          precio={item.price}
-        />
-     
-    </div>
+    <div className="card_container">
+        {categorias.map((item) =>
+        
+        <div>
+        
+            <Item 
+            id={item.id}
+            nombre={item.title}
+            image={item.image}
+            precio={item.price}
+            />
+        
+        </div>
     )}
+    </div>
      </>
        
 )

@@ -9,10 +9,10 @@ export default function NavBar(){
                 <div className="menu">
                     <ul>
                         <li>
-                            <Link to='/'>Home</Link>
+                            <Link to='/Home'>Home</Link>
                         </li>
                         <li>
-                            <Link to='/Productos'>Productos</Link>
+                            <Link to='/'>Productos</Link>
                         </li>
                         <li>
                             <Link to='/category/Procesadores'>Procesadores</Link>
