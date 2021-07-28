@@ -20,8 +20,7 @@ export default function ItemDeatilContainer (){
 
     }
         const fetchData = async () => {
-            console.log("hola")
-            let call = fetch('http://localhost:4000/products', config)
+            let call = fetch('http://localhost:4000/Products', config)
                 .then(res => res.json())
                 .then(resp => setTimeout(() => {
                     console.log(resp)

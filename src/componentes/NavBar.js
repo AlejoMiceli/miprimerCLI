@@ -9,13 +9,10 @@ export default function NavBar(){
                 <div className="menu">
                     <ul>
                         <li>
-                            <Link to='/Home'>Home</Link>
+                            <Link to='/'>Home</Link>
                         </li>
                         <li>
-                            <Link to='/'>Productos</Link>
-                        </li>
-                        <li>
-                            <Link to='/item/:id'>Item Detail</Link>
+                            <Link to='/Productos'>Productos</Link>
                         </li>
                         <li>
                             <Link to='/category/Procesadores'>Procesadores</Link>
@@ -27,7 +24,7 @@ export default function NavBar(){
                             <Link to='/category/perifericos'>Perifericos</Link>
                         </li>
                         <li className="nav_item"> 
-                            <CardWidget/>
+                            <Link to='/carrito'><CardWidget/></Link>
                         </li> 
                     </ul>
 

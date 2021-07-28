@@ -19,15 +19,17 @@ export default function Contenedor (){
 
     }
         const fetchData = async () => {
-            let call = fetch('http://localhost:4000/Products', config)
+            let call = fetch(`http://localhost:4000/Products`, config)
                 .then(res => res.json())
                 .then(resp => setTimeout(() => {
-                    console.log(resp)
+                    if (categoryId == undefined){
+                        setCategorias(resp)
+                    }else{
                     let categoriaFiltrada = resp.flat().filter (e =>
                         e.categoria == categoryId
                         )
                        
-                    setCategorias(categoriaFiltrada)
+                    setCategorias(categoriaFiltrada)}
                     
                 }, 2000))
 }
@@ -41,11 +43,13 @@ return (
     <h1 className="titulo">Productos</h1>
     
     {categorias.map((item) =>
-        
+     
     <div>
        
         <Item 
+          id={item.id}
           nombre={item.title}
+          image={item.image}
           precio={item.price}
         />
      

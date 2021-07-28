@@ -1,5 +1,6 @@
 import React from "react"
 import Contador from "./Contador"
+import { Link } from "react-router-dom"
 
 export default function Item (data){
     function agregarProducto(cantidadSeleccionada) {
@@ -9,11 +10,11 @@ export default function Item (data){
     return (
         <>
         <div className="card">
-            <div className="contenedor">
+            <Link to={`/Detalle/${data.id}`}><div className="contenedor">
             <h1>{data.nombre}</h1>
-            
+            <img className="imagenes" src={data.image}></img>      
             <h2>$ {data.precio}</h2>
-            </div>
+            </div></Link>
             <Contador stock={5} initial={1} y onAdd={agregarProducto} />
         </div>
         </>

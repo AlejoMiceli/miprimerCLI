@@ -43,11 +43,15 @@
 }
 
 .menu ul li {
-  display: flex;
-  color: white;
+  display: flex; 
   list-style: none;
   display: inline-block;
   margin: 30px;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 .nav_item {
@@ -64,7 +68,7 @@
 
 .card {
   width: 250px;
-  height: 250px;
+  height: 450px;
   background-color: rgb(202, 202, 202);
   display: flex;
   flex-direction: column;
@@ -96,5 +100,10 @@
 
 .bienvenida {
   text-align: center;
+}
+
+.imagenes {
+  width: 200px;
+  height: auto;
 }
 

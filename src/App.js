@@ -10,6 +10,7 @@ import Home from './componentes/pages/Home'
 import Productos from './componentes/pages/Productos'
 import Nosotros from './componentes/pages/Nosotros'
 import ItemListContainer from './componentes/ItemListContainer'
+import Carrito from './componentes/Cart';
 
 
 
@@ -22,13 +23,12 @@ function App() {
               <NavBar/>
           </div>
           <Switch>
-            <Route path={'/Home'} exact component={Home}/>
-            <Route path={'/'} exact component={ItemListContainer}/>      
-            <Route path={'/item/:id'} exact component={ItemDeatilContainer}/>      
-            <Route path={'/category/:categoryId'} exact component={ItemListContainer}/>      
+            <Route path={'/'} exact component={Home}/>
+            <Route path={'/Productos'} exact component={ItemListContainer}/>      
+            <Route path={'/Detalle/:id'} exact component={ItemDeatilContainer}/>      
+            <Route path={'/category/:categoryId'} exact component={ItemListContainer}/>  
+            <Route path={'/cart'} exact component={Carrito}/>              
           </Switch>
-         
-          
          
       </div>
     </BrowserRouter>
