@@ -8,7 +8,7 @@ export default function ItemDetail (props){
 
     function terminarCompra(cantidadSeleccionada) {
         if (cantidadSeleccionada == 0) {
-            return <Contador setContador={setContador} contador={contador} stock={5} initial={1} onAdd={terminarCompra}/>
+            return <Contador setContador={setContador} contador={contador} stock={5} initial={1} onAdd={terminarCompra} producto={props.producto}/>
         }else if (cantidadSeleccionada > 0){
           return <Link to='/cart'><button>Terminar compra</button></Link> 
             

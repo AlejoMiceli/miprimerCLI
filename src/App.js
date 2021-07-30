@@ -11,27 +11,30 @@ import Productos from './componentes/pages/Productos'
 import Nosotros from './componentes/pages/Nosotros'
 import ItemListContainer from './componentes/ItemListContainer'
 import Carrito from './componentes/Cart';
+import CustomProvider from './componentes/CustomProvider';
 
 
 
 function App() {
   
   return (
-    <BrowserRouter>
-      <div>
-          <div className="container">
-              <NavBar/>
-          </div>
-          <Switch>
-            <Route path={'/Home'} exact component={Home}/>
-            <Route path={'/'} exact component={ItemListContainer}/>      
-            <Route path={'/Detalle/:id'} exact component={ItemDeatilContainer}/>      
-            <Route path={'/category/:categoryId'} exact component={ItemListContainer}/>  
-            <Route path={'/cart'} exact component={Carrito}/>              
-          </Switch>
-         
-      </div>
-    </BrowserRouter>
+    <CustomProvider>
+      <BrowserRouter>
+        <div>
+            <div className="container">
+                <NavBar/>
+            </div>
+            <Switch>
+              <Route path={'/Home'} exact component={Home}/>
+              <Route path={'/'} exact component={ItemListContainer}/>      
+              <Route path={'/Detalle/:id'} exact component={ItemDeatilContainer}/>      
+              <Route path={'/category/:categoryId'} exact component={ItemListContainer}/>  
+              <Route path={'/cart'} exact component={Carrito}/>              
+            </Switch>
+          
+        </div>
+      </BrowserRouter>
+    </CustomProvider>
   );
 }
 

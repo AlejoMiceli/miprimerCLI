@@ -1,11 +1,16 @@
 import React from "react";
 import Item from "./Item"
 import { useState } from "react";
+import { useContext } from "react";
+import context from "./CartContext";
 
 
 export default function Contador (props) {
 
-   const[sumar, setSumar] = useState(0)
+    const[sumar, setSumar] = useState(0)
+
+    const {productos, setProductos, setCartCount, cartCount} = useContext(context)
+    
 
     function aumentar() {
         if (sumar < props.stock) {
@@ -23,6 +28,12 @@ export default function Contador (props) {
     function agregar(){
         props.setContador(sumar)
         props.onAdd(sumar)
+        setCartCount(cartCount + sumar)
+        let array = productos
+        
+        array.push(props.producto)
+       
+        setProductos(array)
     }
 
     return (

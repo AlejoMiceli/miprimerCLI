@@ -1,8 +1,12 @@
-import react from "react"
+import react, { useContext } from "react"
 import CardWidget from "./pages/CardWidget"
 import { Link, NavLink } from "react-router-dom"
+import context from "./CartContext"
 
 export default function NavBar(){
+
+    const {cartCount} = useContext (context)
+
     return(
     <header>
         <div className="nav_container">       
@@ -24,7 +28,7 @@ export default function NavBar(){
                             <Link to='/category/perifericos'>Perifericos</Link>
                         </li>
                         <li className="nav_item"> 
-                            <Link to='/carrito'><CardWidget/></Link>
+                            <Link to='/carrito'><CardWidget/>{cartCount}</Link>
                         </li> 
                     </ul>
 
