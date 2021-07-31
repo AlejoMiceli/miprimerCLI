@@ -4,16 +4,21 @@ import { useContext } from "react"
 
 export default function Carrito () {
 
-    const  {productos} = useContext (context)
-    console.log(productos)
+
+    const  {carrito} = useContext (context)
+    console.log(carrito)
     return (
         <>     
             <div>
                 Productos Agregados: 
             </div>
             <div>
-                {productos.map((e) => ( 
-                    <img src={e.image}></img>
+                {carrito.map((e) =>  ( 
+                  <div> 
+                      <h1>{e.item.title}</h1> 
+                      <h1>{e.cantidad}</h1>                   
+                     </div>
+                     
                     )
                 )}
             </div>

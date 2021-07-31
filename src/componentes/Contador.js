@@ -9,7 +9,7 @@ export default function Contador (props) {
 
     const[sumar, setSumar] = useState(0)
 
-    const {productos, setProductos, setCartCount, cartCount} = useContext(context)
+    const {carrito, setCarrito, setCartCount, cartCount} = useContext(context)
     
 
     function aumentar() {
@@ -29,12 +29,28 @@ export default function Contador (props) {
         props.setContador(sumar)
         props.onAdd(sumar)
         setCartCount(cartCount + sumar)
-        let array = productos
         
-        array.push(props.producto)
-       
-        setProductos(array)
+        let existe = carrito.find ((x) => x.item.id === props.producto.id) 
+        
+            if (existe) {
+            let arrayContent = carrito.map((itemCart) => {
+                return  itemCart.item.id == props.producto.id ? { item: itemCart.item, cantidad: itemCart.cantidad + sumar } : itemCart
+              }
+              ) 
+              setCarrito(arrayContent)      
+               }else{
+                    let objeto = {item: props.producto, cantidad: sumar}
+                    let array = carrito
+                    array.push(objeto)       
+                    setCarrito(array)
+                    console.log(array)
+                     
+                }  
+        
     }
+                
+    
+
 
     return (
         <div>

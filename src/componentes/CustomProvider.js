@@ -3,12 +3,14 @@ import { Provider } from "./CartContext";
 
 export default function CustomProvider ({children}){
     
-    const [productos, setProductos] = useState ([])
+    const [carrito, setCarrito] = useState ([])
     const [cartCount, setCartCount] = useState (0)
-      
+   
+    
+
     return (
         <>
-            <Provider value={{productos, cartCount, setCartCount, setProductos }}>
+            <Provider value={{carrito, cartCount, setCartCount, setCarrito }}>
                  {children}
             </Provider>
         </>
