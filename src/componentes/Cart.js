@@ -5,7 +5,7 @@ import { useContext, useState } from "react"
 export default function Carrito () {
 
 
-    const  {carrito, setCarrito, setCartCount} = useContext (context)
+    const  {carrito, setCarrito, setCartCount, cartCount} = useContext (context)
     const [precioTotal,  setPrecioTotal] = useState(0)
     function vaciarCarrito (){
         setCarrito([])
@@ -15,6 +15,8 @@ export default function Carrito () {
     function removerProducto(id){
         let filtro = carrito.filter((x) => x.item.id != id)
         setCarrito(filtro)
+        let productoFiltrado = carrito.filter((x)=> x.item.id == id)
+        setCartCount(cartCount - productoFiltrado[0].cantidad)
     }
 
     function precioFinal(){

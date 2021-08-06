@@ -7,34 +7,31 @@ export default function ItemDeatilContainer (){
     
     const [item, setItem] = useState ([])
     const { id } = useParams ();
+    
+    const [producto, setProducto] = useState ({})
+    useEffect (()=> {
+       const firestore = getFirestore() 
+       const collection = firestore.collection("productos")
+       const query = collection.get()
+            query
+                .then((snapshot) => {
+                    const documentos = snapshot.docs
+                    const producto = documentos.map((doc) => {
+                        return { id: doc.id, ...doc.data() }
+                    })
 
-    const config = {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow'
+                    setTimeout(() => {
+                        console.log(producto)
+                        setProducto(producto)
+                    }, 2000)
 
-    }
-        const fetchData = async () => {
-            let call = fetch('http://localhost:4000/Products', config)
-                .then(res => res.json())
-                .then(resp => setTimeout(() => {
-                    console.log(resp)
-                    let itemFiltrado = resp.flat().filter (e =>
-                        e.id == id
-                        )
-                    
-                    setItem(itemFiltrado)
-                }, 2000))
-}
 
-useEffect ( ()=> {
-    fetchData()
-},[]) 
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+    },[])
+
 
 return (
     <>
