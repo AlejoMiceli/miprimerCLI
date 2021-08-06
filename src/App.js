@@ -1,4 +1,5 @@
 import './App.css';
+
 import NavBar from './componentes/NavBar';
 import "./Styles/styles.css"
 import Contador from './componentes/Contador';
