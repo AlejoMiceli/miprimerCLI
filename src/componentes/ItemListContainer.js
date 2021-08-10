@@ -8,7 +8,8 @@ export default function Contenedor (){
     const [categorias, setCategorias] = useState ([])
     const { categoryId } = useParams ();
 
-    const [producto, setProducto] = useState ({})
+    const [producto, setProducto] = useState ([])
+    
     useEffect (()=> {
        const firestore = getFirestore() 
        const collection = firestore.collection("productos")
@@ -21,8 +22,9 @@ export default function Contenedor (){
                     })
 
                     setTimeout(() => {
-                        console.log(producto)
+                        
                         setProducto(producto)
+                        console.log(producto)
                     }, 2000)
 
 
@@ -35,10 +37,13 @@ export default function Contenedor (){
  
 return (
     <>
-    {/* ]<h1>{producto[0].title}</h1> */}
+    
     <h1 className="titulo">Productos</h1>
+
+    {/* <h1>{producto[0].title}</h1> */}
+
     <div className="card_container">
-        {categorias.map((item) =>
+        {producto.map((item) =>
         
         <div>
         

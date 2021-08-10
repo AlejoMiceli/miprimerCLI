@@ -8,8 +8,6 @@ import Contenedor from "./componentes/ItemListContainer"
 import ItemDeatilContainer from './componentes/ItemDetailConteiner';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from './componentes/pages/Home'
-import Productos from './componentes/pages/Productos'
-import Nosotros from './componentes/pages/Nosotros'
 import ItemListContainer from './componentes/ItemListContainer'
 import Carrito from './componentes/Cart';
 import CustomProvider from './componentes/CustomProvider';

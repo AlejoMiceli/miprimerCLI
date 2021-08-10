@@ -1,45 +1,42 @@
 import Item from "./Item"
 import { useEffect, useState } from "react"
 import ItemDetail from "./ItemDetail"
-import { useParams } from "react-router"
+import { useParams, useHistory } from "react-router"
+import { getFirestore } from "../firebase"
+
 
 export default function ItemDeatilContainer (){
     
-    const [item, setItem] = useState ([])
+    const [item, setItem] = useState (false)
     const { id } = useParams ();
+    const history = useHistory()
     
-    const [producto, setProducto] = useState ({})
+    
     useEffect (()=> {
+
        const firestore = getFirestore() 
        const collection = firestore.collection("productos")
-       const query = collection.get()
+       let query = collection.doc(id).get()
+
             query
-                .then((snapshot) => {
-                    const documentos = snapshot.docs
-                    const producto = documentos.map((doc) => {
-                        return { id: doc.id, ...doc.data() }
-                    })
-
-                    setTimeout(() => {
-                        console.log(producto)
-                        setProducto(producto)
-                    }, 2000)
-
-
+                .then(doc => {
+                    if(doc.exists) {
+                        setItem(doc.data())
+                        console.log(doc)
+                    }else{
+                        history.push("/")
+                    }
+                    
                 })
-                .catch((error) => {
+                .catch(error => {
                     console.log(error)
                 })
-    },[])
-
-
+            },[])
 return (
     <>
-        {item.map ((e) =>(
-            <ItemDetail producto={e}/>
-        ))
-        
-    }
+      
+            <ItemDetail producto={item}/>
+   
     </>
        )  
         
