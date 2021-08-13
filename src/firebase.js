@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyBcVYnWO6Xm9Qziizbsutw1EKUrBfgfFSk",
     authDomain: "mi-primer-e-commerce.firebaseapp.com",
