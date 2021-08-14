@@ -7,9 +7,11 @@ export default function Contenedor (){
     
     const [categorias, setCategorias] = useState ([])
     const { categoryId } = useParams ();
+   
+
 
     const [producto, setProducto] = useState ([])
-    
+    console.log(producto)
     useEffect (()=> {
        const firestore = getFirestore() 
        const collection = firestore.collection("productos")
@@ -17,14 +19,22 @@ export default function Contenedor (){
             query
                 .then((snapshot) => {
                     const documentos = snapshot.docs
-                    const producto = documentos.map((doc) => {
-                        return { id: doc.id, ...doc.data() }
+                    const productos = documentos.map((doc) => { 
+                        // Determinar que productos queremos mostrar
+                        // Agarrar la categoria y fijate si es igual a categoryId
+                        let info = doc.data();
+
+                        if (info.categoria  === categoryId || categoryId === undefined) {
+                            console.log(info)
+                            return { id: doc.id, ...info }
+                        }
+                        // Si son iguales queremos retornar esa informacion   
+                        
                     })
 
-                    setTimeout(() => {
+                    setTimeout(()=>{
+                        setProducto(productos)
                         
-                        setProducto(producto)
-                        console.log(producto)
                     }, 2000)
 
 
@@ -38,14 +48,12 @@ export default function Contenedor (){
 return (
     <>
     
-    <h1 className="titulo">Productos</h1>
-
-    {/* <h1>{producto[0].title}</h1> */}
+    <h1 className="titulo">Productos</h1> 
 
     <div className="card_container">
-        {producto.map((item) =>
-        
-        <div>
+        {!!producto && producto.map((item) => {
+        return item !== undefined && (
+            <div>
         
             <Item 
             id={item.id}
@@ -55,7 +63,9 @@ return (
             />
         
         </div>
-    )}
+        )
+
+    })}
     </div>
      </>
        

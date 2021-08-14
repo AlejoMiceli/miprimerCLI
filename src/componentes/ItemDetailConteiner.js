@@ -34,9 +34,9 @@ export default function ItemDeatilContainer (){
             },[])
 return (
     <>
-      
-            <ItemDetail producto={item}/>
-   
+    <div className="card">
+        <ItemDetail  producto={item}/>
+    </div>
     </>
        )  
         

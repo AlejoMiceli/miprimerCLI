@@ -40,24 +40,9 @@ export default function Carrito () {
         setPrecioTotal(total)
     }
 
-     const db = getFirestore();
-
-     const orders = db.collection("orders")
-        
-    const newORder = {
-        buyer: {name:nombre, tel:telefono, correo:mail},
-        items: {cart:carrito},
-        total: precioTotal
-    };
+ 
+      
     
-    
-
-    // orders.add(newORder).then(( resultado ) => {
-    //     setOrderId(resultado.id);
-    // }).catch(error => {
-    //     setError(error);
-    // })
-
     function handleNombreChange(e) {
         setNombre(e.target.value);
      }
@@ -69,30 +54,53 @@ export default function Carrito () {
      }
 
      function confirmacionCompra(){
-         alert("Tu orden fue creada: " + nombre + " por un importe de $" + precioTotal)
+         // tenemos que ver como podemos llamar a firebase para darle la compra
+         // Queremos amoldar la informacion para que firebase la acepte sin problema
+         // Queremos usar useState especificamente setOrderId para darle al user el id de la compra
+         // La id de la compra viene de firebase en la respuesta
+
+         const db = getFirestore();
+    
+         const orders = db.collection("orders")
+         
+         const newORder = {
+            buyer: {name:nombre, tel:telefono, correo:mail},
+            items: {cart:carrito},
+            total: precioTotal
+        };
+        
+        orders.add(newORder).then(( resultado ) => {
+            setOrderId(resultado.id);
+            // Tenemos que mandarle al user su ID de compra
+        }).catch(error => {
+            setError(error);
+        })
+    
+         alert("Tu orden fue creada: " + nombre + " por un importe de $" + precioTotal + ". Tu ID es " + id)
      }
 
     return (
         <>     
-            <div>
+            <div className="titulo">
                 Productos Agregados: 
             </div>
-            <div>
+            <div className="card">
                 {carrito.map((e) =>  ( 
                   <div> 
                       <h1>{e.item.title}</h1> 
                       <h1>{e.cantidad}</h1> 
-                      <h1>${e.item.price}</h1> ={e.cantidad*e.item.price}
-                      <button onClick={() => removerProducto (e.item.id)}>Quitar producto</button>                  
+                      <h1>${e.item.price}</h1> ={e.cantidad*e.item.price} <br></br>
+                      <button onClick={() => removerProducto (e.item.id)}>Quitar producto</button>                
                      </div>
                      
                     )
                 )}
-            </div>
-            <button onClick={precioFinal}>Calcular Total</button>
+                 <button onClick={precioFinal}>Calcular Total</button>
             <h1>{precioTotal}</h1>
+            </div>
+           
             
-            <form action="/my-handling-form-page" method="post">
+            <form action="/my-handling-form-page" method="post" className="card">
                 <ul>
                     <li>
                         <label for="name">Nombre</label>
@@ -103,7 +111,7 @@ export default function Carrito () {
                         <input value={telefono} onChange={handleTelefonoChange}/>
                     </li>
                     <li>
-                        <label for="mail" >Mail</label>
+                        <label for="mail" >Mail</label><br></br>
                         <input type="email" id="mail" name="user_email" value={mail} onChange={handleMailChange} />
                     </li>
                 </ul>
