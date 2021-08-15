@@ -11,7 +11,7 @@ export default function Contenedor (){
 
 
     const [producto, setProducto] = useState ([])
-    console.log(producto)
+    
     useEffect (()=> {
        const firestore = getFirestore() 
        const collection = firestore.collection("productos")
@@ -19,30 +19,26 @@ export default function Contenedor (){
             query
                 .then((snapshot) => {
                     const documentos = snapshot.docs
+                    
                     const productos = documentos.map((doc) => { 
                         // Determinar que productos queremos mostrar
                         // Agarrar la categoria y fijate si es igual a categoryId
-                        let info = doc.data();
-
-                        if (info.categoria  === categoryId || categoryId === undefined) {
-                            console.log(info)
-                            return { id: doc.id, ...info }
+                        let producto = doc.data();
+                       
+                        if (producto.categoria  === categoryId || categoryId === undefined) {
+                            
+                            return { id: doc.id, ...producto }
                         }
                         // Si son iguales queremos retornar esa informacion   
                         
-                    })
-
-                    setTimeout(()=>{
+                    })                    
                         setProducto(productos)
-                        
-                    }, 2000)
-
-
+                       
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-    },[])
+    },[categoryId])
 
  
 return (
@@ -51,7 +47,7 @@ return (
     <h1 className="titulo">Productos</h1> 
 
     <div className="card_container">
-        {!!producto && producto.map((item) => {
+        {producto.map((item) => {
         return item !== undefined && (
             <div>
         

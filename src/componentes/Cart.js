@@ -15,7 +15,7 @@ export default function Carrito () {
     const [mail, setMail] = useState("")
     const [telefono, setTelefono] = useState("")
     const [nombre, setNombre] = useState("")
-    const [id, setOrderId] = useState("")
+    const [orderId, setOrderId] = useState("")
     const [error, setError] = useState("")
 
     function vaciarCarrito (){
@@ -66,17 +66,19 @@ export default function Carrito () {
          const newORder = {
             buyer: {name:nombre, tel:telefono, correo:mail},
             items: {cart:carrito},
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
             total: precioTotal
         };
         
-        orders.add(newORder).then(( resultado ) => {
-            setOrderId(resultado.id);
+        orders.add(newORder).then(( resultado ) => {        
+            
+            alert("Tu orden fue creada: " + nombre + " por un importe de $" + precioTotal + ". Tu ID es " + resultado.id)
             // Tenemos que mandarle al user su ID de compra
         }).catch(error => {
             setError(error);
         })
     
-         alert("Tu orden fue creada: " + nombre + " por un importe de $" + precioTotal + ". Tu ID es " + id)
+         
      }
 
     return (
